@@ -55,18 +55,40 @@
     function makeCoffee(drinkType) {
         drinksOrdered.push(drinkType);
         console.log(drinksOrdered);
-         $('#coffee_image').attr('src', "static/coffee_machine.jpg");
-         setTimeout(function() { $('#coffee_image').attr("src", "static/coffee_mug.jpg"); }, 1500);
-         setTimeout(function() { $('#coffee_image').attr("src", "static/coffee_beans.jpg"); }, 4000);
 
-         var totalRevenue = revenue();
-         $('#revenue').html(totalRevenue.toFixed(2));
+        $('#coffee_image').fadeOut(1500);
+        $('#coffee_image').attr('src', "static/coffee_machine.jpg");
+        $('#coffee_image').fadeOut(1500);
+        setTimeout(function() { $('#coffee_image').attr("src", "static/coffee_mug.jpg"); }, 1500);
+        $('#coffee_image').fadeIn(1000);
+        $('#coffee_image').fadeOut(1500);
+        setTimeout(function() { $('#coffee_image').attr("src", "static/coffee_beans.jpg"); }, 4000);
+        $('#coffee_image').fadeIn(1000);
+
+        var totalRevenue = revenue();
+        $('#revenue').html(totalRevenue.toFixed(2));
+    }
+
+    function makeChocolate() {
+        drinksOrdered.push('hotChocolate');
+
+        $('#coffee_image').fadeOut(1500);
+        $('#coffee_image').attr('src', "static/hot_chocolate_machine.jpg");
+        $('#coffee_image').fadeOut(1500);
+        setTimeout(function() { $('#coffee_image').attr("src", "static/hot_chocolate.jpg"); }, 1500);
+        $('#coffee_image').fadeIn(1000);
+        $('#coffee_image').fadeOut(1500);
+        setTimeout(function() { $('#coffee_image').attr("src", "static/coffee_beans.jpg"); }, 4000);
+        $('#coffee_image').fadeIn(1000);
+
+        var totalRevenue = revenue();
+        $('#revenue').html(totalRevenue.toFixed(2));
     }
 
     $('#coffee_image').on('click', function () { return makeCoffee('brew'); });
     $('#espresso').on('click', function () { return makeCoffee('espresso'); });
     $('#latte').on('click', function () { return makeCoffee('latte'); });
-    $('#hot-chocolate').on('click', function () { return makeCoffee('hotChocolate'); });
+    $('#hot-chocolate').on('click', makeChocolate);
 
     var prices = {
         "brew": 2.05,
